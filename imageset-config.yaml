@@ -1,0 +1,50 @@
+kind: ImageSetConfiguration
+apiVersion: mirror.openshift.io/v1alpha2
+storageConfig:
+  registry:
+    imageURL: infra-services.abc.tkagn.io:5000/openshift4/ocmirror/metadata:latest
+    skipTLS: false
+mirror:
+  platform:
+    architectures:
+      - "amd64"
+    channels:
+      - name: stable-4.17
+        type: ocp
+    graph: true
+  operators:
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.17
+    packages:
+      - name: local-storage-operator
+        channels:
+          - name: stable
+      - name: odf-operator
+        channels:
+          - name: stable-4.17
+      - name: cincinnati-operator
+        channels:
+          - name: v1
+      - name: kubevirt-hyperconverged
+        channels:
+          - name: stable
+      - name: kubernetes-nmstate-operator
+        channels:
+          - name: stable
+      - name: openshift-gitops-operator
+        channels:
+          - name: latest
+      - name: redhat-oadp-operator
+        channels:
+          - name: stable-1.4
+      - name: metallb-operator
+        channels:
+          - name: stable
+  - catalog: registry.redhat.io/redhat/community-operator-index:v4.17
+    packages:
+      - name: external-secrets-operator
+        channels:
+          - name: alpha
+  additionalImages:
+    - name: registry.redhat.io/ubi9/ubi:latest
+    - name: registry.redhat.io/rhel8/support-tools
+  helm: {}
