@@ -38,7 +38,13 @@ mirror:
           - name: stable-1.4
       - name: metallb-operator
         channels:
-          - name: stable
+         - name: stable
+      - name: advanced-cluster-management
+        channels:
+          - name: release-2.12
+      - name: multicluster-engine
+        channels:
+          - name: stable-2.7
   - catalog: registry.redhat.io/redhat/community-operator-index:v4.17
     packages:
       - name: external-secrets-operator
